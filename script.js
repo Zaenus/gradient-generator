@@ -23,6 +23,22 @@ copyBtn.addEventListener('click', () => {
     }, 2000); // Reverts after 2 seconds
 });
 
+const downloadBtn = document.getElementById('download-btn');
+
+downloadBtn.addEventListener('click', () => {
+    const isPremium = false; // Placeholder—later tied to payment
+    if (isPremium) {
+        html2canvas(document.getElementById('preview')).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'gradient.png';
+            link.click();
+        });
+    } else {
+        alert('Download PNG is a premium feature! Unlock it for $5/month.');
+    }
+});
+
 // Listen for changes
 color1.addEventListener('input', updateGradient);
 color2.addEventListener('input', updateGradient);
