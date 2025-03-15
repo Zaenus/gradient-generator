@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradient Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Gradient Generator</h1>
+    <div class="container">
+        <div class="controls">
+            <label>Color 1: <input type="color" id="color1" value="#ff0000"></label>
+            <label>Color 2: <input type="color" id="color2" value="#0000ff"></label>
+            <label>Angle: <input type="range" id="angle" min="0" max="360" value="90"> <span id="angle-value">90°</span></label>
+        </div>
+        <div class="preview" id="preview"></div>
+        <div class="output">
+            <textarea id="css-output" readonly>CSS will appear here</textarea>
+            <button id="copy-btn">Copy CSS</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
