@@ -118,6 +118,75 @@ button:hover {
 #premium-btn:hover {
     background-color: #e0a800;
 }
+#animate-btn {
+    padding: 10px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#animate-btn:hover {
+    background-color: #138496;
+}
+.saved-gradients {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#save-btn {
+    padding: 10px;
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#save-btn:hover {
+    background-color: #5a32a3;
+}
+
+#saved-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#saved-list li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#saved-list li:hover {
+    background-color: #f8f9fa;
+}
+
+#saved-list li div {
+    width: 50px;
+    height: 20px;
+    border-radius: 4px;
+}
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+}
 @media (max-width: 600px) {
     .container {
         padding: 15px;
