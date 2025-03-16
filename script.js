@@ -4,6 +4,7 @@ const angle = document.getElementById('angle');
 const preview = document.getElementById('preview');
 const cssOutput = document.getElementById('css-output');
 const copyBtn = document.getElementById('copy-btn');
+const stripe = Stripe('pk_live_51Qs65NIdq3omUekPTTg9l4DKwXD5QSUUt0JZ11RELImqNR0wFqaVfdmQq6u3HDIJtLxw8JqEPXqFmlSFF84jVOoE00IjR3HLGD'); // Replace with your pk_ key
 
 // Update gradient on input change
 function updateGradient() {
@@ -39,6 +40,44 @@ downloadBtn.addEventListener('click', () => {
     }
 });
 
+const premiumBtn = document.getElementById('premium-btn');
+
+premiumBtn.addEventListener('click', () => {
+    stripe.redirectToCheckout({
+        lineItems: [{ price: 'monthly8usd', quantity: 1 }], // Replace with your price_ ID
+        mode: 'subscription',
+        successUrl: window.location.href + '?premium=success',
+        cancelUrl: window.location.href + '?premium=cancel',
+    }).then(result => {
+        if (result.error) {
+            alert(result.error.message);
+        }
+    });
+});
+
+// Temporary premium check with localStorage
+function isPremiumUser() {
+    return localStorage.getItem('isPremium') === 'true';
+}
+
+downloadBtn.addEventListener('click', () => {
+    if (isPremiumUser()) {
+        html2canvas(document.getElementById('preview')).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'gradient.png';
+            link.click();
+        });
+    } else {
+        alert('Download PNG is a premium feature! Unlock it for $5/month.');
+    }
+});
+
+// Check URL for success (temporary)
+if (window.location.search.includes('premium=success')) {
+    localStorage.setItem('isPremium', 'true');
+    alert('Thanks for going premium! You can now download PNGs.');
+}
 // Listen for changes
 color1.addEventListener('input', updateGradient);
 color2.addEventListener('input', updateGradient);
