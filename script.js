@@ -21,9 +21,12 @@ copyBtn.addEventListener('click', () => {
     copyBtn.textContent = 'Copied!';
     setTimeout(() => {
         copyBtn.textContent = 'Copy CSS';
-    }, 2000); // Reverts after 2 seconds
+    }, 2000);
+    gtag('event', 'copy_css', {
+        'event_category': 'Engagement',
+        'event_label': 'Copy CSS Click'
+    });
 });
-
 const downloadBtn = document.getElementById('download-btn');
 
 downloadBtn.addEventListener('click', () => {
@@ -43,8 +46,14 @@ downloadBtn.addEventListener('click', () => {
 const premiumBtn = document.getElementById('premium-btn');
 
 premiumBtn.addEventListener('click', () => {
+    // Track the click event
+    gtag('event', 'click_premium_button', {
+        'event_category': 'Engagement',
+        'event_label': 'Go Premium Click'
+    });
+
     stripe.redirectToCheckout({
-        lineItems: [{ price: 'monthly8usd', quantity: 1 }], // Replace with your price_ ID
+        lineItems: [{ price: 'monthly8usd', quantity: 1 }], // Your Price ID
         mode: 'subscription',
         successUrl: window.location.href + '?premium=success',
         cancelUrl: window.location.href + '?premium=cancel',
